@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xmlns:ewp="https://github.com/erasmus-without-paper/ewp-specs-architecture/blob/stable-v1/common-types.xsd"
+        xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+        jaxb:version="2.1"
+        elementFormDefault="qualified"
+
+        targetNamespace="https://github.com/erasmus-without-paper/ewp-specs-api-emrex-data-access-point/blob/stable-v1/manifest-entry.xsd"
+        xmlns="https://github.com/erasmus-without-paper/ewp-specs-api-emrex-data-access-point/blob/stable-v1/manifest-entry.xsd">
+
+    <xs:import
+            schemaLocation="../ewp-specs-architecture/common-types.xsd"
+            namespace="https://github.com/erasmus-without-paper/ewp-specs-architecture/blob/stable-v1/common-types.xsd"
+    />
+
+    <xs:annotation>
+        <xs:documentation>
+            This schema is a part of the Erasmus Without Paper project. Before you start
+            using it, make sure you have read the general rules described here:
+
+            http://developers.erasmuswithoutpaper.eu/
+        </xs:documentation>
+        <xs:appinfo>
+            <jaxb:schemaBindings>
+                <jaxb:package name="eu.erasmuswithoutpaper.api.ncp"/>
+            </jaxb:schemaBindings>
+        </xs:appinfo>
+    </xs:annotation>
+
+    <xs:element name="emrex-data-access-point">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="ewp:ManifestApiEntryBase">
+                    <xs:sequence>
+                        <xs:element name="url" type="ewp:HTTPS"/>
+                        <xs:element name="name" type="xs:string"/>
+                        <xs:element name="country-code" type="ewp:CountryCode"/>
+                        <xs:element name="institution" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element name="certificate" type="xs:base64Binary" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>
